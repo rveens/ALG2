@@ -1,3 +1,5 @@
+import java.util.concurrent.Callable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Sander van Leeuwen & Rick Veens
@@ -50,10 +52,91 @@ public class Opdrachta {
         return formule4(n-1, k) + formule4(n-1, k-1);
     }
 
-    public int faculteit(int n)
+    private int faculteit(int n)
     {
         if(n <= 0)
             return 0;
-        return faculteit(n-1) * n;
+        return faculteit(n - 1) * n;
+    }
+
+
+
+
+
+    // benchmarking
+    public long Bereken1()
+    {
+        long start = System.currentTimeMillis();
+
+        // acties hier
+        bereken1werk();
+
+        long finish = System.currentTimeMillis();
+
+        return finish-start;
+    }
+
+    private void bereken1werk()
+    {
+        formule1(6, 3);
+        formule1(10, 5);
+        formule1(15, 8);
+    }
+
+    public long Bereken2()
+    {
+        long start = System.currentTimeMillis();
+
+        // acties hier
+        bereken2werk();
+
+        long finish = System.currentTimeMillis();
+
+        return finish-start;
+    }
+
+    private void bereken2werk()
+    {
+        formule2(6, 3);
+        formule2(10, 5);
+        formule2(15, 8);
+    }
+
+    public long Bereken3()
+    {
+        long start = System.currentTimeMillis();
+
+        // acties hier
+        bereken3werk();
+
+        long finish = System.currentTimeMillis();
+
+        return finish-start;
+    }
+
+    private void bereken3werk()
+    {
+        formule3(6, 3);
+        formule3(10, 5);
+        formule3(15, 8);
+    }
+
+    public long Bereken4()
+    {
+        long start = System.currentTimeMillis();
+
+        // acties hier
+        bereken4werk();
+
+        long finish = System.currentTimeMillis();
+
+        return finish-start;
+    }
+
+    private void bereken4werk()
+    {
+        formule4(6, 3);
+        formule4(10, 5);
+        formule4(15, 8);
     }
 }

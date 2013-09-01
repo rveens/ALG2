@@ -30,10 +30,11 @@ public class Opdrachta {
 
     private int formule3(int n, int k)
     {
-        // niet helemaal zeker of deze onderstaande controle 100% jusit is
         if (k > n)
             return 0;
         else if (n == k)
+            return 1;
+        else if (k == 0)
             return 1;
 
         // recursie
@@ -42,7 +43,6 @@ public class Opdrachta {
 
     private int formule4(int n, int k)
     {
-        // niet helemaal zeker of deze onderstaande controle 100% jusit is
         if (k > n)
             return 0;
         else if (n == k)
@@ -97,9 +97,11 @@ public class Opdrachta {
 
     private void bereken2werk()
     {
-        formule2(6, 3);
-        formule2(10, 5);
-        formule2(15, 8);
+        for (int i = 0; i < 1000; i ++) {
+            formule2(6, 3);
+            formule2(10, 5);
+            formule2(15, 8);
+        }
     }
 
     public long Bereken3()

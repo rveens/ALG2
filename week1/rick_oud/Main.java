@@ -10,7 +10,7 @@ public class Main {
     {
         Opdrachta a = new Opdrachta();
 
-        System.out.println("Tijd van formule1: " + a.Bereken1());
+//        System.out.println("Tijd van formule1: " + a.Bereken1());
         System.out.println("Tijd van formule2: " + a.Bereken2());
         System.out.println("Tijd van formule3: " + a.Bereken3());
         System.out.println("Tijd van formule4: " + a.Bereken4());

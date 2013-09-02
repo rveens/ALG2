@@ -10,7 +10,7 @@ public class Opdracht {
     }
 
     //Berekenen van de faculteit (recursief)
-    public int f(int n)
+    public double f(double n)
     {
         if(n <= 0)
             return 0;
@@ -79,10 +79,10 @@ public class Opdracht {
     {
         Opdracht opdracht = new Opdracht();
         long time = System.currentTimeMillis();
-        int n = 15; // Het n getal
-        int k = 8; // Het k getal
+        int n = 80; // Het n getal
+        int k = 38; // Het k getal
         double antwoord = 0;
-        for(int i = 0; i < 1; i++) //De 1 hier is het aantal berekeningen
+        for (int i = 0; i < 1000000; i++) //De 1 hier is het aantal berekeningen
             antwoord = opdracht.NoverK1(n, k); //De 1 hier is de methode
         System.out.println("De uitkomst als n = " + n + " en k = " + k + " is: " + antwoord);
         System.out.println("Calculation took " + (System.currentTimeMillis() - time) + " miliseconds.");

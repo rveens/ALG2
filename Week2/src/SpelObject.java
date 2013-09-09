@@ -12,8 +12,9 @@ public class SpelObject
 
     public SpelObject(double x, double y)
     {
-        position[0] = y;
-        position[1] = x;
+        // deze waren verkeerd om! aaarggg
+        position[0] = x;
+        position[1] = y;
     }
 
     // 0 = x, y = 1

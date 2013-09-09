@@ -17,7 +17,7 @@ public class Main {
         sortArray(test, 0, test.length-1, 0);
 
         for (int i = 0; i < test.length; i++) {
-            System.out.printf("%d: x:%f y:%f\n", i, test[i].getPosition(1), test[i].getPosition(0));
+            System.out.printf("%d: x:%f y:%f\n", i, test[i].getPosition(0), test[i].getPosition(1));
         }
     }
 
@@ -39,54 +39,21 @@ public class Main {
     private static void sortArray(SpelObject[] objArray, int left, int right, int dimensionIndex)
     {
         int i = left, j = right;
-        double mediaanWaarde = objArray[(left + right) / 2].getPosition(dimensionIndex);
+        double mediaanWaarde = objArray[left + (right - left) / 2].getPosition(dimensionIndex);
 
-        do {
+        while (i <= j)
+        {
+            // ga door totdat je een waarde vind die hoger is dan de mediaan waarde
             while (objArray[i].getPosition(dimensionIndex) < mediaanWaarde)
                 i++;
+            // ga door totdat je een waarde vind die lager is dan de mediaan waarde
             while (mediaanWaarde < objArray[j].getPosition(dimensionIndex))
                 j--;
 
+            // zolang i en j elkaar niet kruisen,
             if (i <= j) {
-                // omdraaien
+                // draai om
                 SpelObject temp = objArray[i];
-                objArray[i] = objArray[j];
-                objArray[j] = temp;
-                ++i;
-                --j;
-            }
-        } while (i <= j);
-
-        // linkerhelft: left ... <= mediaan
-        if (left < j)
-            sortArray(objArray, left, j, dimensionIndex);
-
-        // dimension een omhoog (of weer 0)
-        if (dimensionIndex < SpelObject.DIMENSION -1)
-            ++dimensionIndex;
-        else
-            dimensionIndex = 0;
-
-        // rechterhelft: mediaan >= ...  right
-        if (i < right)
-            sortArray(objArray, i, right, dimensionIndex);
-    }
-
-    private static SpelObject[] partition(SpelObject objArray[], int left, int right, int dimensionIndex)
-    {
-        int i = left, j = right;
-        SpelObject temp;
-        double mediaanWaarde = objArray[(left + right) / 2].getPosition(dimensionIndex);
-
-        while (i <= j) {
-            while (objArray[i].getPosition(dimensionIndex) < mediaanWaarde)
-                i++;
-            while (objArray[j].getPosition(dimensionIndex) > mediaanWaarde)
-                j--;
-
-            if (i <= j) {
-                // omdraaien
-                temp = objArray[i];
                 objArray[i] = objArray[j];
                 objArray[j] = temp;
                 ++i;
@@ -94,6 +61,20 @@ public class Main {
             }
         }
 
-        return objArray;
+        // i is nu in het midden, en j is dat ook
+
+        // dimension een omhoog (of weer 0)
+        if (dimensionIndex < SpelObject.DIMENSION -1)
+            ++dimensionIndex;
+        else
+            dimensionIndex = 0;
+
+        // linkerhelft: left ... <= mediaan deelarray heeft een size of van 1 als left == j
+        if (left < j)
+            sortArray(objArray, left, j, dimensionIndex);
+
+        // rechterhelft: mediaan >= ...  right deelarray heeft een size of van 1 als i == right
+        if (i < right)
+            sortArray(objArray, i, right, dimensionIndex);
     }
 }

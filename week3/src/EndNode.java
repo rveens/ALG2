@@ -14,4 +14,13 @@ public class EndNode extends Node
         super(ouder);
         this.spelObject = spelObject;
     }
+
+    public SpelObject getSpelObject() {
+        return this.spelObject;
+    }
+
+    public void setSpelObject(SpelObject newSpelObject) {
+        this.spelObject = newSpelObject;
+    }
 }
+

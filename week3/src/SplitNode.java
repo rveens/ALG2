@@ -12,4 +12,20 @@ public class SplitNode extends Node
     public SplitNode(Node ouder) {
         super(ouder);
     }
+
+    public Node getLinkerKind() {
+        return linkerKind;
+    }
+
+    public void setLinkerKind(Node linkerKind) {
+        this.linkerKind = linkerKind;
+    }
+
+    public Node getRechterKind() {
+        return rechterKind;
+    }
+
+    public void setRechterKind(Node rechterKind) {
+        this.rechterKind = rechterKind;
+    }
 }

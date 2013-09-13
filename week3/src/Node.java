@@ -5,7 +5,7 @@
  * Time: 15:05
  * To change this template use File | Settings | File Templates.
  */
-public class Node
+public abstract class Node
 {
     private Node ouder;
 

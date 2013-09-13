@@ -8,9 +8,9 @@
 public class SpelObject
 {
     public static final int DIMENSION = 2;
-    private double[] position = new double[DIMENSION];
+    private int[] position = new int[DIMENSION];
 
-    public SpelObject(double x, double y)
+    public SpelObject(int x, int y)
     {
         // deze waren verkeerd om! aaarggg
         position[0] = x;
@@ -18,7 +18,7 @@ public class SpelObject
     }
 
     // 0 = x, y = 1
-    public double getPosition(int index )
+    public int getPosition(int index )
     {
         return position[index];
     }

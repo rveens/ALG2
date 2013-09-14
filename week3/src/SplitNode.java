@@ -7,7 +7,8 @@
  */
 public class SplitNode extends Node
 {
-    private Node linkerKind, rechterKind;
+    private Node    linkerKind,
+                    rechterKind;
 
     public SplitNode(Node ouder) {
         super(ouder);

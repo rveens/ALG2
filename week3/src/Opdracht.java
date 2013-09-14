@@ -21,6 +21,25 @@ public class Opdracht
         objArray[5] = new SpelObject(60, 800);
         objArray[6] = new SpelObject(40, 800);
         objArray[7] = new SpelObject(700, 850);
+
+        // root node, parent is null
+        Node rootNode;
+        rootNode = sortArray(0, 7, 0, null);
+
+        printNodes(rootNode);
+
+//        for(int i = 0; i < objArray.length; i++)
+//            System.out.printf("%d: x:%f, f:%f\n", i, objArray[i].getPosition(0), objArray[i].getPosition(1));
+    }
+
+    private void printNodes(Node node) {
+        if (node != null) {
+            if (node instanceof SplitNode) {
+                printNodes(((SplitNode)node).getLinkerKind());
+                printNodes(((SplitNode)node).getRechterKind());
+            } else
+                ((EndNode)node).printSpelObject();
+        }
     }
 
     private void swap(int first, int second)
@@ -30,16 +49,20 @@ public class Opdracht
         objArray[second] = temp;
     }
 
-    public void sortArray(int left, int right, int dimensionIndex)
+    public Node sortArray(int left, int right, int dimensionIndex, Node parentNode)
     {
+        Node node = null; // dit wordt onze return value
+
         if (right - left <= 0) // array is 1 groot
-            return;
-        else if ( (right - left) == 1) { // array is 2 groot
-            if (objArray[right].getPosition(dimensionIndex) > objArray[left].getPosition(dimensionIndex))
+            node = new EndNode(parentNode, objArray[right - left]); // endnode, deze gaat op return en we gaan weer terug
+        else if ( (right - left) == 1) // array is 2 groot
+        { // ook nog splitnode
+            if (objArray[right].getPosition(dimensionIndex) < objArray[left].getPosition(dimensionIndex))
                 swap(left, right);
-            return;
-        } else {
-            int partition = partition(left, right, dimensionIndex);
+        }
+        else // splitnode
+        {
+            int mediaanIndex = partition(left, right, dimensionIndex);
 
             // dimension een omhoog (of weer 0)
             if (dimensionIndex < SpelObject.DIMENSION -1)
@@ -47,20 +70,44 @@ public class Opdracht
             else
                 dimensionIndex = 0;
 
+            node = new SplitNode(parentNode); // node is nieuwe parent
+
             // linkerhelft: left ... <= mediaan
-            if (left < partition)
-                sortArray(left, partition, dimensionIndex);
+//            if (left < mediaanIndex-1) dit kan weg?
+            ((SplitNode)node).setLinkerKind(sortArray(left, mediaanIndex-1, dimensionIndex, node));
 
             // rechterhelft: mediaan >= ...
-            if (partition < right)
-                sortArray(partition, right, dimensionIndex);
+//            if (mediaanIndex+1 < right) dit kan weg?
+            ((SplitNode)node).setRechterKind(sortArray(mediaanIndex+1, right, dimensionIndex, node));
         }
+
+        return node; // node komt terug bij de vorige en wordt ingesteld als linker of rechter kind, of hij komt weer terug bij de eerste call
     }
 
-    private int partition(int left, int right, int dimensionIndex)
+    private int partition(int initialLeft, int initialRight, int dimensionIndex)
     {
-        // TODO mediaan van 3
-        double mediaanWaarde = objArray[right - 1].getPosition(dimensionIndex);
+        //Bepalen van de mediaan, door middel van de mediaan van 3
+        int left = initialLeft;
+        int right = initialRight;
+        int middle = (left+right) / 2;
+        if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
+        {
+            swap(left, middle);
+        }
+        if(objArray[middle].getPosition(dimensionIndex) > objArray[right].getPosition(dimensionIndex))
+        {
+            swap(middle, right);
+        }
+        if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
+        {
+            swap(left, middle);
+        }
+        double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
+
+        swap(right-1, middle);
+        left++;
+        right -= 2;
+        //Einde bepalen mediaan van 3
 
         while (left <= right)
         {
@@ -81,7 +128,7 @@ public class Opdracht
                 --right;
             }
         }
-
+        swap(left, initialRight-1);
         return left;
     }
 }

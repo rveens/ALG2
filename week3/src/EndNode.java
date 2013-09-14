@@ -22,5 +22,9 @@ public class EndNode extends Node
     public void setSpelObject(SpelObject newSpelObject) {
         this.spelObject = newSpelObject;
     }
+
+    public void printSpelObject() {
+        System.out.printf("x:%f, f:%f\n", spelObject.getPosition(0), spelObject.getPosition(1));
+    }
 }
 

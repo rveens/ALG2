@@ -24,7 +24,7 @@ public class EndNode extends Node
     }
 
     public void printSpelObject() {
-        System.out.printf("x:%f, f:%f\n", spelObject.getPosition(0), spelObject.getPosition(1));
+        System.out.printf("x:%f, y:%f\n", spelObject.getPosition(0), spelObject.getPosition(1));
     }
 }
 

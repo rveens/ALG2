@@ -54,12 +54,17 @@ public class Opdracht
         Node node = null; // dit wordt onze return value
 
         if (right - left <= 0) // array is 1 groot
-            node = new EndNode(parentNode, objArray[right - left]); // endnode, deze gaat op return en we gaan weer terug
-        else if ( (right - left) == 1) // array is 2 groot
-        { // ook nog splitnode
-            if (objArray[right].getPosition(dimensionIndex) < objArray[left].getPosition(dimensionIndex))
-                swap(left, right);
-        }
+            node = new EndNode(parentNode, objArray[left]); // endnode, deze gaat op return en we gaan weer terug
+//        else if ( (right - left) == 1) // array is 2 groot
+//        { // ook nog splitnode
+//            if (objArray[right].getPosition(dimensionIndex) < objArray[left].getPosition(dimensionIndex))
+//                swap(left, right);
+//            node = new SplitNode(parentNode);
+//               EndNode leftNode = new EndNode(node, objArray[right]);
+//            EndNode rightNode = new EndNode(node, objArray[left]);
+//            ((SplitNode)node).setLinkerKind(leftNode);
+//            ((SplitNode)node).setRechterKind(rightNode);
+//        }
         else // splitnode
         {
             int mediaanIndex = partition(left, right, dimensionIndex);
@@ -73,11 +78,11 @@ public class Opdracht
             node = new SplitNode(parentNode); // node is nieuwe parent
 
             // linkerhelft: left ... <= mediaan
-//            if (left < mediaanIndex-1) dit kan weg?
+//            if (left < mediaanIndex-1) // dit kan weg?
             ((SplitNode)node).setLinkerKind(sortArray(left, mediaanIndex-1, dimensionIndex, node));
 
             // rechterhelft: mediaan >= ...
-//            if (mediaanIndex+1 < right) dit kan weg?
+//            if (mediaanIndex+1 < right) // dit kan weg?
             ((SplitNode)node).setRechterKind(sortArray(mediaanIndex+1, right, dimensionIndex, node));
         }
 

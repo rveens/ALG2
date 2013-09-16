@@ -55,12 +55,10 @@ public class Opdracht
                 dimensionIndex = 0;
 
             // linkerhelft: left ... <= mediaan
-            //if (left < mediaanIndex-1)
-                sortArray(left, mediaanIndex, dimensionIndex);
+            sortArray(left, mediaanIndex, dimensionIndex);
 
             // rechterhelft: mediaan >= ...
-            //if (mediaanIndex+1 < right)
-                sortArray(mediaanIndex+1, right, dimensionIndex);
+            sortArray(mediaanIndex+1, right, dimensionIndex);
         }
     }
 
@@ -70,18 +68,13 @@ public class Opdracht
         int left = initialLeft;
         int right = initialRight;
         int middle = (left+right) / 2;
+
         if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
-        {
             swap(left, middle);
-        }
         if(objArray[middle].getPosition(dimensionIndex) > objArray[right].getPosition(dimensionIndex))
-        {
             swap(middle, right);
-        }
         if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
-        {
             swap(left, middle);
-        }
 
         swap(right-1, middle);
         double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);

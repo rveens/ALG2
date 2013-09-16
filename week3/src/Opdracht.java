@@ -55,16 +55,16 @@ public class Opdracht
 
         if (right - left <= 0) // array is 1 groot
             node = new EndNode(parentNode, objArray[left]); // endnode, deze gaat op return en we gaan weer terug
-//        else if ( (right - left) == 1) // array is 2 groot
-//        { // ook nog splitnode
-//            if (objArray[right].getPosition(dimensionIndex) < objArray[left].getPosition(dimensionIndex))
-//                swap(left, right);
-//            node = new SplitNode(parentNode);
-//               EndNode leftNode = new EndNode(node, objArray[right]);
-//            EndNode rightNode = new EndNode(node, objArray[left]);
-//            ((SplitNode)node).setLinkerKind(leftNode);
-//            ((SplitNode)node).setRechterKind(rightNode);
-//        }
+        else if ( (right - left) == 1) // array is 2 groot
+        { // ook nog splitnode
+            if (objArray[right].getPosition(dimensionIndex) < objArray[left].getPosition(dimensionIndex))
+                swap(left, right);
+            node = new SplitNode(parentNode);
+            EndNode leftNode = new EndNode(node, objArray[left]);
+            EndNode rightNode = new EndNode(node, objArray[right]);
+            ((SplitNode)node).setLinkerKind(leftNode);
+            ((SplitNode)node).setRechterKind(rightNode);
+        }
         else // splitnode
         {
             int mediaanIndex = partition(left, right, dimensionIndex);

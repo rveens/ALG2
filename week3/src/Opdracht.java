@@ -78,11 +78,9 @@ public class Opdracht
             node = new SplitNode(parentNode); // node is nieuwe parent
 
             // linkerhelft: left ... <= mediaan
-//            if (left < mediaanIndex-1) // dit kan weg?
-            ((SplitNode)node).setLinkerKind(sortArray(left, mediaanIndex-1, dimensionIndex, node));
+            ((SplitNode)node).setLinkerKind(sortArray(left, mediaanIndex, dimensionIndex, node));
 
             // rechterhelft: mediaan >= ...
-//            if (mediaanIndex+1 < right) // dit kan weg?
             ((SplitNode)node).setRechterKind(sortArray(mediaanIndex+1, right, dimensionIndex, node));
         }
 
@@ -107,9 +105,9 @@ public class Opdracht
         {
             swap(left, middle);
         }
-        double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
 
         swap(right-1, middle);
+        double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
         left++;
         right -= 2;
         //Einde bepalen mediaan van 3

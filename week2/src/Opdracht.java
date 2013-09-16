@@ -55,11 +55,11 @@ public class Opdracht
                 dimensionIndex = 0;
 
             // linkerhelft: left ... <= mediaan
-            if (left < mediaanIndex-1)
-                sortArray(left, mediaanIndex-1, dimensionIndex);
+            //if (left < mediaanIndex-1)
+                sortArray(left, mediaanIndex, dimensionIndex);
 
             // rechterhelft: mediaan >= ...
-            if (mediaanIndex+1 < right)
+            //if (mediaanIndex+1 < right)
                 sortArray(mediaanIndex+1, right, dimensionIndex);
         }
     }
@@ -82,9 +82,9 @@ public class Opdracht
         {
             swap(left, middle);
         }
-        double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
 
         swap(right-1, middle);
+        double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
         left++;
         right -= 2;
         //Einde bepalen mediaan van 3

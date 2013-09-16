@@ -27,9 +27,6 @@ public class Opdracht
         rootNode = sortArray(0, 7, 0, null);
 
         printNodes(rootNode);
-
-//        for(int i = 0; i < objArray.length; i++)
-//            System.out.printf("%d: x:%f, f:%f\n", i, objArray[i].getPosition(0), objArray[i].getPosition(1));
     }
 
     private void printNodes(Node node) {
@@ -93,18 +90,13 @@ public class Opdracht
         int left = initialLeft;
         int right = initialRight;
         int middle = (left+right) / 2;
+
         if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
-        {
             swap(left, middle);
-        }
         if(objArray[middle].getPosition(dimensionIndex) > objArray[right].getPosition(dimensionIndex))
-        {
             swap(middle, right);
-        }
         if(objArray[left].getPosition(dimensionIndex) > objArray[middle].getPosition(dimensionIndex))
-        {
             swap(left, middle);
-        }
 
         swap(right-1, middle);
         double mediaanWaarde = objArray[right-1].getPosition(dimensionIndex);
@@ -123,10 +115,7 @@ public class Opdracht
 
             // zolang i en j elkaar niet kruisen,
             if (left <= right) {
-                // draai om
-                SpelObject temp = objArray[left];
-                objArray[left] = objArray[right];
-                objArray[right] = temp;
+                swap(left, right);
                 ++left;
                 --right;
             }

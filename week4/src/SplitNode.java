@@ -29,4 +29,14 @@ public class SplitNode extends Node
     public void setRechterKind(Node rechterKind) {
         this.rechterKind = rechterKind;
     }
+
+    public double lowerBound( int index )
+    {
+        return 0.0;
+    }
+
+    public double upperBound( int index )
+    {
+        return 0.0;
+    }
 }

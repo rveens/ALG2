@@ -12,4 +12,7 @@ public abstract class Node
     public Node(Node ouder) {
         this.ouder = ouder;
     }
+
+    public abstract double lowerBound( int index );
+    public abstract double upperBound( int index );
 }

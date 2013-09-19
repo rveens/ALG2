@@ -26,5 +26,15 @@ public class EndNode extends Node
     public void printSpelObject() {
         System.out.printf("x:%f, y:%f\n", spelObject.getPosition(0), spelObject.getPosition(1));
     }
+
+    public double lowerBound( int index )
+    {
+        return spelObject.getPosition(index);
+    }
+
+    public double upperBound( int index )
+    {
+        return spelObject.getPosition(index);
+    }
 }
 

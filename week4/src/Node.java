@@ -15,4 +15,6 @@ public abstract class Node
 
     public abstract double lowerBound( int index );
     public abstract double upperBound( int index );
+
+    public abstract SpelObject[] searchCoordinates(double[] coordinates);
 }

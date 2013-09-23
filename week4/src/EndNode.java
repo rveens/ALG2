@@ -19,10 +19,6 @@ public class EndNode extends Node
         return this.spelObject;
     }
 
-    public void setSpelObject(SpelObject newSpelObject) {
-        this.spelObject = newSpelObject;
-    }
-
     public void printSpelObject() {
         System.out.printf("x:%f, y:%f\n", spelObject.getPosition(0), spelObject.getPosition(1));
     }
@@ -35,6 +31,20 @@ public class EndNode extends Node
     public double upperBound( int index )
     {
         return spelObject.getPosition(index);
+    }
+
+    @Override
+    public SpelObject[] searchCoordinates(double[] coordinates) {
+        SpelObject[] returnValue = new SpelObject[1];
+        boolean check = true;
+        for(int i = 0; i < SpelObject.DIMENSION; i++)
+            if(spelObject.getPosition(i) != coordinates[i])
+                check = false;
+
+        if(check)
+            returnValue[0] = spelObject;
+
+        return returnValue;
     }
 }
 

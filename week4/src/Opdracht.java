@@ -26,6 +26,12 @@ public class Opdracht
         Node rootNode;
         rootNode = sortArray(0, 7, 0, null);
 
+        if(rootNode instanceof SplitNode)
+        {
+            SplitNode temp = (SplitNode) rootNode;
+            temp.fillArray();
+        }
+
         printNodes(rootNode);
     }
 

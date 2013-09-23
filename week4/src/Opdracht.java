@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rick
@@ -31,6 +33,8 @@ public class Opdracht
             SplitNode temp = (SplitNode) rootNode;
             temp.fillArray();
         }
+        LinkedList<SpelObject> test = rootNode.searchCoordinates(new double[] { 50, 750 } );
+        test.toString();
 
         printNodes(rootNode);
     }

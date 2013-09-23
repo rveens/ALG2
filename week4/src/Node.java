@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rick
@@ -16,5 +18,5 @@ public abstract class Node
     public abstract double lowerBound( int index );
     public abstract double upperBound( int index );
 
-    public abstract SpelObject[] searchCoordinates(double[] coordinates);
+    public abstract LinkedList<SpelObject> searchCoordinates(double[] coordinates);
 }

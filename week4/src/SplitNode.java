@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rick
@@ -45,8 +47,29 @@ public class SplitNode extends Node
     }
 
     @Override
-    public SpelObject[] searchCoordinates(double[] coordinates) {
-        return new SpelObject[0];  //To change body of implemented methods use File | Settings | File Templates.
+    public LinkedList<SpelObject> searchCoordinates(double[] coordinates) {
+        LinkedList<SpelObject> returnValue = new LinkedList<SpelObject>();
+
+        boolean checkLinker, checkRechter;
+
+        checkLinker = checkRechter = true;
+
+        for (int i = 0; i < SpelObject.DIMENSION; i++) {
+            if (coordinates[i] > linkerKind.upperBound(i) &&
+                    coordinates[i] < linkerKind.lowerBound(i))
+                checkLinker = false;
+            if (coordinates[i] > rechterKind.upperBound(i) &&
+                    coordinates[i] < rechterKind.lowerBound(i))
+                checkRechter = false;
+        }
+
+        if (checkLinker)
+            returnValue.addAll(linkerKind.searchCoordinates(coordinates));
+
+        if (checkRechter)
+            returnValue.addAll(rechterKind.searchCoordinates(coordinates));
+
+        return returnValue;
     }
 
     public void fillArray()

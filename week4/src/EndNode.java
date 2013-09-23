@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: rick
@@ -34,15 +36,16 @@ public class EndNode extends Node
     }
 
     @Override
-    public SpelObject[] searchCoordinates(double[] coordinates) {
-        SpelObject[] returnValue = new SpelObject[1];
+    public LinkedList<SpelObject> searchCoordinates(double[] coordinates) {
+        LinkedList<SpelObject> returnValue = new LinkedList<SpelObject>();
+
         boolean check = true;
         for(int i = 0; i < SpelObject.DIMENSION; i++)
             if(spelObject.getPosition(i) != coordinates[i])
                 check = false;
 
         if(check)
-            returnValue[0] = spelObject;
+            returnValue.add(spelObject);
 
         return returnValue;
     }

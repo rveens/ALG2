@@ -85,6 +85,8 @@ public class Opdracht
 
             // rechterhelft: mediaan >= ...
             ((SplitNode)node).setRechterKind(sortArray(mediaanIndex+1, right, dimensionIndex, node));
+
+            // node.fillArray();
         }
 
         return node; // node komt terug bij de vorige en wordt ingesteld als linker of rechter kind, of hij komt weer terug bij de eerste call

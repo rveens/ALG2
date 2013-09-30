@@ -1,0 +1,34 @@
+Neurale netwerken
+- Met of zonder leraar (teacher)
+- Leren met back propegation (input, gewenste output)
+
+Kohonen map aka (SOM) (self organizing map)
+- Niet lineare projectie
+	- Linear: werk wordt steeds meer
+	- Niet linear: werk kan beginnen met veel, of weinig (random)
+- Vijf dimensies terug brengen naar 2 dimensies
+- Streep zeten tussen v die ver van elkaar af staan
+- Objecten die meer dan 1,5 buiten elkaar liggen met elkaar verbinden
+
+Praktisch voorbeeld kohonen map
+- Welke letters lijken op elkaar
+
+Hoe werkt een kohonen map
+- ... zie sliders 18-19-20-21
+
+Traveling salesman probleem
+- Langs dorpjes gaan en kijken hoe hij het snelst kan reizen
+- Kohonen wordt bij 30+ steden heel traag
+- Kohonen geeft de 5% beste oplossing, in vergelijking met een statistische oplossing
+
+GIGO (Garbage In Garbage Out)
+- Systeem alle gegevens geven en kijken wat er uit komt
+	- Intelligentie ligt zoveel mogelijk bij de computer
+		- Werkt meestal niet
+- Oplossing: preprocessing en dan zelf lerende algoritme
+
+Onderzoeksonderwerpen
+- waar wordt SOM het gebruikt?
+- Traveling salesman probleem met SOM
+- Maak zelf een SOM en probeer wat meer data
+- Vergelijk SOM met back progation

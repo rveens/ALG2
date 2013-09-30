@@ -6,50 +6,30 @@ public class Opdracht
 
     public Opdracht()
     {
-        objArray = new SpelObject[100];
-        int aantalKeren = 10000;
-        int aantalObjecten = 3;
+        objArray = new SpelObject[8];
 
-        for(int i = 0; i < objArray.length; i++)
-        {
-            if(i >= aantalObjecten)
-                objArray[i] = new SpelObject(700, i);
-            else
-                objArray[i] = new SpelObject(600, 100);
-        }
-
-        Long start2 = System.currentTimeMillis();
+        objArray[0] = new SpelObject(900, 100);
+        objArray[1] = new SpelObject(100, 100);
+        objArray[2] = new SpelObject(50, 750);
+        objArray[3] = new SpelObject(110, 90);
+        objArray[4] = new SpelObject(950, 50);
+        objArray[5] = new SpelObject(60, 800);
+        objArray[6] = new SpelObject(40, 800);
+        objArray[7] = new SpelObject(700, 850);
 
         // root node, parent is null
-        Node rootNode = null;
-        for(int i = 0; i < aantalKeren; i++)
-            rootNode = sortArray(0, (objArray.length - 1), 0, null);
+        Node rootNode;
+        rootNode = sortArray(0, 7, 0, null);
 
         if(rootNode instanceof SplitNode)
         {
             SplitNode temp = (SplitNode) rootNode;
             temp.fillArray();
         }
-
-        Long start1 = System.currentTimeMillis();
-
-        for(int i = 0; i < aantalKeren; i++)
-            rootNode.searchCoordinates(new double[] { 600, 100 } );
-
-        Long eind2 = System.currentTimeMillis();
-        Long eind1 = System.currentTimeMillis();
-
-
-        Long start3 = System.currentTimeMillis();
-
-        for(int i = 0; i < aantalKeren; i++)
-            findArray(new double[] { 600, 100 } );
-
-        Long eind3 = System.currentTimeMillis();
-
-        System.out.println("Methode 1: " + (eind1 - start1));
-        System.out.println("Methode 2: " + (eind2 - start2));
-        System.out.println("Methode 3: " + (eind3 - start3));
+        LinkedList<SpelObject> test = rootNode.searchCoordinates(new double[] { 50, 750 } );
+        for (SpelObject obj : test)
+            System.out.printf("x: %f, y: %f", obj.getPosition(0), obj.getPosition(1));
+//        printNodes(rootNode);
     }
 
     private void printNodes(Node node) {
@@ -67,21 +47,6 @@ public class Opdracht
         SpelObject temp = objArray[first];
         objArray[first] = objArray[second];
         objArray[second] = temp;
-    }
-
-    private SpelObject[] findArray(double[] coordinates)
-    {
-        SpelObject[] returnValue = new SpelObject[10];
-        int objectsFound = 0;
-        for(int i = 0; i < objArray.length; i++)
-        {
-            if(objArray[i].getPosition(0) == coordinates[0] && objArray[i].getPosition(1) == coordinates[1])
-            {
-                returnValue[objectsFound] = objArray[i];
-                objectsFound++;
-            }
-        }
-        return returnValue;
     }
 
     public Node sortArray(int left, int right, int dimensionIndex, Node parentNode)
@@ -117,6 +82,8 @@ public class Opdracht
 
             // rechterhelft: mediaan >= ...
             ((SplitNode)node).setRechterKind(sortArray(mediaanIndex+1, right, dimensionIndex, node));
+
+            // node.fillArray();
         }
 
         return node; // node komt terug bij de vorige en wordt ingesteld als linker of rechter kind, of hij komt weer terug bij de eerste call

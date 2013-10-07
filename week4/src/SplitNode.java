@@ -55,10 +55,10 @@ public class SplitNode extends Node
         checkLinker = checkRechter = true;
 
         for (int i = 0; i < SpelObject.DIMENSION; i++) {
-            if (coordinates[i] > linkerKind.upperBound(i) &&
+            if (coordinates[i] > linkerKind.upperBound(i) ||
                     coordinates[i] < linkerKind.lowerBound(i))
                 checkLinker = false;
-            if (coordinates[i] > rechterKind.upperBound(i) &&
+            if (coordinates[i] > rechterKind.upperBound(i) ||
                     coordinates[i] < rechterKind.lowerBound(i))
                 checkRechter = false;
         }

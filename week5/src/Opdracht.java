@@ -6,7 +6,7 @@ public class Opdracht
 
     public Opdracht()
     {
-        objArray = new SpelObject[100];
+        objArray = new SpelObject[500];
         int aantalKeren = 10000;
         int aantalObjecten = 3;
 
@@ -31,10 +31,11 @@ public class Opdracht
             temp.fillArray();
         }
 
+        LinkedList<SpelObject> ll = new LinkedList<SpelObject>();
         Long start1 = System.currentTimeMillis();
 
         for(int i = 0; i < aantalKeren; i++)
-            rootNode.searchCoordinates(new double[] { 600, 100 } );
+            rootNode.searchCoordinates(new double[] { 600, 100 }, ll);
 
         Long eind2 = System.currentTimeMillis();
         Long eind1 = System.currentTimeMillis();

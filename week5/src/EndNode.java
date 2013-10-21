@@ -36,18 +36,14 @@ public class EndNode extends Node
     }
 
     @Override
-    public LinkedList<SpelObject> searchCoordinates(double[] coordinates) {
-        LinkedList<SpelObject> returnValue = new LinkedList<SpelObject>();
-
+    public void searchCoordinates(double[] coordinates, LinkedList<SpelObject> result) {
         boolean check = true;
         for(int i = 0; i < SpelObject.DIMENSION; i++)
             if(spelObject.getPosition(i) != coordinates[i])
                 check = false;
 
         if(check)
-            returnValue.add(spelObject);
-
-        return returnValue;
+            result.add(spelObject);
     }
 }
 

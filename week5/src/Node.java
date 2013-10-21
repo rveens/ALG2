@@ -18,5 +18,5 @@ public abstract class Node
     public abstract double lowerBound( int index );
     public abstract double upperBound( int index );
 
-    public abstract LinkedList<SpelObject> searchCoordinates(double[] coordinates);
+    public abstract void searchCoordinates(double[] coordinates, LinkedList<SpelObject> result);
 }

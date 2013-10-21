@@ -11,13 +11,13 @@ public class SplitNode extends Node
 {
     private Node    linkerKind,
                     rechterKind;
-    private Double[] lowerArray;
-    private Double[] upperArray;
+    private double[] lowerArray;
+    private double[] upperArray;
 
     public SplitNode(Node ouder) {
         super(ouder);
-        lowerArray = new Double[SpelObject.DIMENSION];
-        upperArray = new Double[SpelObject.DIMENSION];
+        lowerArray = new double[SpelObject.DIMENSION];
+        upperArray = new double[SpelObject.DIMENSION];
     }
 
     public Node getLinkerKind() {
@@ -47,29 +47,23 @@ public class SplitNode extends Node
     }
 
     @Override
-    public LinkedList<SpelObject> searchCoordinates(double[] coordinates) {
+    public void searchCoordinates(double[] coordinates, LinkedList<SpelObject> result) {
         LinkedList<SpelObject> returnValue = new LinkedList<SpelObject>();
 
-        boolean checkLinker, checkRechter;
+        boolean check;
 
-        checkLinker = checkRechter = true;
+        check = true;
 
         for (int i = 0; i < SpelObject.DIMENSION; i++) {
-            if (coordinates[i] > linkerKind.upperBound(i) ||
-                    coordinates[i] < linkerKind.lowerBound(i))
-                checkLinker = false;
-            if (coordinates[i] > rechterKind.upperBound(i) ||
-                    coordinates[i] < rechterKind.lowerBound(i))
-                checkRechter = false;
+            if (coordinates[i] > upperBound(i) ||
+                    coordinates[i] < lowerBound(i))
+                check = false;
         }
 
-        if (checkLinker)
-            returnValue.addAll(linkerKind.searchCoordinates(coordinates));
-
-        if (checkRechter)
-            returnValue.addAll(rechterKind.searchCoordinates(coordinates));
-
-        return returnValue;
+        if (check) {
+            linkerKind.searchCoordinates(coordinates, result);
+            linkerKind.searchCoordinates(coordinates, result);
+        }
     }
 
     public void fillArray()
